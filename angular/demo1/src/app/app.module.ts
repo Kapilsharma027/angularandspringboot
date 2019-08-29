@@ -1,29 +1,36 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import {MatPaginatorModule, MatPaginatorIntl} from '@angular/material/paginator';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SecondComponent } from './second/second.component';
-import { HeaderModule } from './module/header/header.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorIntlCro } from './customClass';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginateModule } from 'ngx-paginate';
+
 @NgModule({
   declarations: [
     AppComponent,
-    SecondComponent
   ],
   imports: [
-    HeaderModule,///imported
-    MatSelectModule,
-    FormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    NgxPaginationModule,
+    NgxPaginateModule,
+    TranslateModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro , deps: [TranslateService]},
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
