@@ -21,11 +21,12 @@ export class AppComponent {
   p: number = 1;
   dataCount = 0;
   config: any;
-  page: PageState = {
-    currentPage: 1,
-    pageSize: 5,
-    totalItems: 55
-  };
+  pagesize = 10;
+  // page: PageState = {
+  //   currentPage: 1,
+  //   pageSize: this.pagesize,
+  //   totalItems: 55
+  // };
   currentChange;
   textToShow: string;
 
@@ -34,18 +35,10 @@ export class AppComponent {
    */
   constructor(private appService: AppService
   ) {
-    this.appService.getTabData().subscribe(data => {
-      console.log(data);
-      this.data = data['data'];
-      this.dataCount = data['dataCount'];
-    },
-      error => {
-        console.log('error in tab data', error);
-      });
-
+    this.getAuthorData(1, this.pagesize);
       this.config = {
         itemsPerPage: this.itemperpage,
-        currentPage: 1,
+        currentPage: this.pagesize,
         totalItems: 100
       };
 
@@ -61,7 +54,19 @@ export class AppComponent {
 // change comments
   change(eve: any) {
     console.log(eve);
-    this.p = eve;
+    this.config.currentPage = eve;
+    this.getAuthorData();
+  }
+
+  getAuthorData(pagenumber , pagesize) {
+    this.appService.getTabData().subscribe(data => {
+      console.log(data);
+      this.data = data['data'];
+      this.dataCount = data['dataCount'];
+    },
+      error => {
+        console.log('error in tab data', error);
+      });
   }
   goToFirst() {
     this.p = 1;
