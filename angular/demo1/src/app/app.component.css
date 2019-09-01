@@ -1,3 +1,4 @@
+
 /* ngx-paginate ::ng-deep .page-entry {
     background-color: black;
     color: yellow;
@@ -31,4 +32,58 @@
 .pagination-previous,.pagination-next{
     display: inline-block;
     font-weight: bold;
+}
+
+
+
+.wrap-blog {
+
+  .heading {
+    border-bottom: 1px solid rgba(151, 151, 151, 0.5);
+  }
+  .body, .heading {
+    padding: 10px;
+    background-color: #f6f8fb;
+    h4 {
+      margin: 0;
+    }
+  }
+}
+
+.add-keyword {
+  font-size: 28px;
+  margin-top: 10px;
+}
+
+.checkbox-group {
+  mat-checkbox {
+    display: inline-block;
+    margin: 5px 20px 0 0;
+  }
+}
+
+.custom-table {
+  margin-top: 10px;
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;
+  margin-right: -4px;
+}
+
+.label {
+  max-width: 169.4px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), inset 0 0 4px 0 rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  text-transform: uppercase;
+  color: #000;
+  padding: 10px;
+  text-align: center;
+  font-family: $bold;
+}
+
+.align-center {
+  text-align: center;
 }

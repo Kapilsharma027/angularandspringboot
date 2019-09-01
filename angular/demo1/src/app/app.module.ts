@@ -12,7 +12,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginateModule } from 'ngx-paginate';
-
+import {CdkTableModule} from '@angular/cdk/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +22,7 @@ import { NgxPaginateModule } from 'ngx-paginate';
     MatPaginatorModule,
     BrowserModule,
     FormsModule,
+    CdkTableModule,
     MatFormFieldModule,
     MatSelectModule,
     NgxPaginationModule,

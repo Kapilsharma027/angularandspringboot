@@ -45,7 +45,7 @@ export class NetworkService {
     data: any,
   ): Observable<ResponseEntity> {
     if (typeOfMethod === 'POST') {
-      // return this.postRequest(endPoint, data);
+       return this.postRequest(endPoint, data);
     } else if (typeOfMethod === 'GET') {
       return this.getRequest(endPoint);
     }
@@ -82,37 +82,35 @@ export class NetworkService {
       );
   }
 
-  // private postRequest(endPoint: string, providerData: string): Observable<ResponseEntity> {
-  //   let header;
-  //   if (this.storageService.read('userToken')) {
-  //     header = new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer ' + this.storageService.read('userToken')
-  //     })
-  //   } else {
-  //     header = new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //     })
-  //   }
+  private postRequest(endPoint: string, providerData: string): Observable<ResponseEntity> {
+    // let header;
+    // if (this.storageService.read('userToken')) {
+    //   header = new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + this.storageService.read('userToken')
+    //   })
+    // } else {
+    //   header = new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //   })
+    // }
 
-  //   return this.httpClient.post<any>(BaseURL + endPoint, providerData, {
-  //     headers: header
-  //   })
-  //     .pipe(
-  //       tap(
-  //         data => {
-  //           // this.loader.displayLoader(false);
-  //           console.log('success');
-  //         }
-  //       ),
-  //       catchError((error: any) => {
-  //         // this.loader.displayLoader(false);
-  //         console.log(error);
-  //         return throwError(error);
-  //       }
-  //       )
-  //     );
-  // }
+    return this.httpClient.post<any>(BaseURL + endPoint, providerData)
+      .pipe(
+        tap(
+          data => {
+            // this.loader.displayLoader(false);
+            console.log('success');
+          }
+        ),
+        catchError((error: any) => {
+          // this.loader.displayLoader(false);
+          console.log(error);
+          return throwError(error);
+        }
+        )
+      );
+  }
 
   // getWithoutAuthentication(endPoint: string): Observable<ResponseEntity> {
   //   return this.httpClient.get<any>(BaseURL + endPoint, {

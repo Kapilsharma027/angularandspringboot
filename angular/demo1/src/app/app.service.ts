@@ -14,8 +14,9 @@ export class AppService {
     private networkService: NetworkService) {
 }
 
-getTabData() {
-  return this.http.get('assets/data.json');
-// return this.networkService.request(methodType.get, '/authors', null);
+getTabData(data) {
+  //  return this.http.get('assets/data.json');
+ return this.networkService.request(methodType.post, '/authors', data);
 }
 }
+ 

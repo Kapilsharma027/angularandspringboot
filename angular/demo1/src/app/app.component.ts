@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { AppService } from './app.service';
 import { PaginateOptions, PageState } from 'ngx-paginate';
 import { Observable } from 'rxjs';
+import { PageRequestModel } from './shared/pagerequestmodel';
 
 @Component({
   selector: 'app-root',
@@ -16,40 +17,36 @@ export class AppComponent {
   pageIndex: number;
   last = 10;
   first = 0;
-  itemperpage = 10;
+
   Entries = [5, 10, 15, 20];
-  p: number = 1;
-  dataCount = 0;
-  config: any;
+  p = 1;
+  dataCount: 100;
+  // config: any;
   pagesize = 10;
-  // page: PageState = {
-  //   currentPage: 1,
-  //   pageSize: this.pagesize,
-  //   totalItems: 55
-  // };
+  selected = 10;
   currentChange;
   textToShow: string;
-
+  pageRequestModel: PageRequestModel;
+  config = {
+    itemsPerPage: this.pagesize,
+    currentPage: 1 ,
+    totalItems: this.dataCount
+  };
   /**
    * @param  {AppService} privateappService
    */
   constructor(private appService: AppService
   ) {
-    this.getAuthorData(1, this.pagesize);
-      this.config = {
-        itemsPerPage: this.itemperpage,
-        currentPage: this.pagesize,
-        totalItems: 100
-      };
-
-
+    this.getAuthorData();
   }
 
   /**
    * @param  {any} data data
    */
-  setPage(data: any) {
-    console.log("console on change");
+  setPageSize(pageSize: any) {
+    console.log('console on setPage change', pageSize);
+this.pagesize = pageSize;
+    this.getAuthorData();
   }
 // change comments
   change(eve: any) {
@@ -58,25 +55,33 @@ export class AppComponent {
     this.getAuthorData();
   }
 
-  getAuthorData(pagenumber , pagesize) {
-    this.appService.getTabData().subscribe(data => {
+  getAuthorData( ) {
+this.pageRequestModel = new PageRequestModel();
+this.pageRequestModel.pagenumber = this.config.currentPage;
+this.pageRequestModel.pagesize = this.pagesize;
+
+    this.appService.getTabData(this.pageRequestModel).subscribe(data => {
       console.log(data);
       this.data = data['data'];
-      this.dataCount = data['dataCount'];
+      this.dataCount = data['totalCount'];
+      this.config.itemsPerPage = this.pagesize;
+      this.config.totalItems = this.dataCount;
     },
       error => {
         console.log('error in tab data', error);
       });
   }
   goToFirst() {
-    this.p = 1;
+    this.config.currentPage = 1;
+    this.getAuthorData();
   }
   goToLast() {
-    const rem = Math.floor(this.dataCount % this.itemperpage);
-    this.p = Math.floor(this.dataCount / this.itemperpage);
+    const rem = Math.floor(this.dataCount % this.pagesize);
+    this.config.currentPage = Math.floor(this.dataCount / this.pagesize);
     if (rem) {
-      this.p++;
+      this.config.currentPage++;
     }
+    this.getAuthorData();
   }
 //   config: any;
 //   collection = { count: 20, data: [] };
