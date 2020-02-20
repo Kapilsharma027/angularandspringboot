@@ -1,4 +1,4 @@
-package packge.project.util;
+package pacakge.project.util;
 /**
  * Response implements an application to have custom response.
  *

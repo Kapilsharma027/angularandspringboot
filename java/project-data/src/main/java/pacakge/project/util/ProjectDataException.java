@@ -1,4 +1,4 @@
-package packge.project.util;
+package pacakge.project.util;
 
 import org.springframework.http.HttpStatus;
 
