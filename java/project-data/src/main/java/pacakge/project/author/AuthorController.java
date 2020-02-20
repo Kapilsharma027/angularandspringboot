@@ -26,6 +26,7 @@ public class AuthorController {
     public PageResponse getAuthors(@RequestBody PageDetailsDto pageDetailsDto) {
 		return  authorService.getAllAuthors(pageDetailsDto);
 	}
+	
 //	@RequestMapping("/authors")
 //    public List<Author> getAuthorsByPagination() {
 //		return authorService.getAllAuthors();
