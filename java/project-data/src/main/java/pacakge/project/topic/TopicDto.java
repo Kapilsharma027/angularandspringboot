@@ -1,62 +1,69 @@
 package pacakge.project.topic;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import pacakge.project.common.StringValidator;
 
 //annotation used to declare it is a entity 
-@Entity
-public class Topic {
-//Id is used to define which key is primary.
-	@Id
+@Valid
+public class TopicDto {
+	// Id is used to define which key is primary.
+
 	private String id;
-//	  @NotNull(
-//		      groups = { Topic.Existing.class} )
+	@NotNull(groups = { TopicDto.Existing.class })
 	private String name;
-//	  @StringValidator
+	
+	
+	@StringValidator(groups = { TopicDto.Existing.class})
 	private String description;
-	
-	 /**
-	   * The Interface Existing.
-	   */
-	  public interface Existing {
-	  }
 
-	  /**
-	   * The Interface New.
-	   */
-	  public interface New {
+//	/**
+//	 * The Interface Existing.
+//	 */
+	public interface Existing {
+	}
 
-	  }
-	
+	/**
+	 * The Interface New.
+	 */
+	public interface New {
+
+	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
-	
-	public Topic() {
+
+	public TopicDto() {
 	}
-	public Topic(String id, String name, String description) {
+
+	public TopicDto(String id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
+
 	// getters and setters
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	
-	
 }

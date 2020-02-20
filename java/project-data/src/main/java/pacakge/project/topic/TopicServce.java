@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 // Service annotation define a class as businees 
 @Service
@@ -14,6 +15,8 @@ public class TopicServce {
 	@Autowired
 	private TopicRepository topicRepository;
 	
+//	@Autowired
+//	private TopicMapper topicMapper;
 
 	
 public List<Topic>getAllTopics(){
@@ -34,8 +37,9 @@ public Topic getTopicById(String id){
 }
 
 // it will simple add in array topics
-public void addTopic(Topic topic ){
+public void addTopic(TopicDto topicDto ){
 //	topics.add(topic);
+	Topic topic = TopicMapper.toEntity(topicDto);
 	topicRepository.save(topic);
 }
 
@@ -53,7 +57,7 @@ public void updateTopic(Topic topic, String id) {
 }
 // Not need to return any thing here.
 public void delete(String id) {
-//topics.removeIf(f -> f.getId().equals(id));
+//topics.removeIf(f -> f.getId().equals(id));	
 	topicRepository.deleteById(id);
 }
 }
