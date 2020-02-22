@@ -9,7 +9,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
-import packge.project.util.ProjectDataException;
+import pacakge.project.util.ProjectDataException;
 
 
 /**

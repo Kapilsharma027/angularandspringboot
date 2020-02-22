@@ -1,4 +1,4 @@
-package packge.project.util;
+package pacakge.project.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
